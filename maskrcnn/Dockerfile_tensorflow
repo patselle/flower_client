@@ -1,0 +1,59 @@
+# publicly available docker image 'python' on docker hub will be pulled
+# FROM python:3.7.7
+FROM tensorflow/tensorflow:2.3.0-gpu
+
+# Set work directory
+WORKDIR home/
+
+# Install some basic utilities
+# https://github.com/phusion/baseimage-docker/issues/319
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends \
+    apt-utils \
+    wget \
+    graphviz \
+    net-tools \
+    ca-certificates \
+    sudo \
+    git \
+    bzip2 \
+    build-essential \
+    # cuda-command-line-tools-10.0 \
+    # cuda-cublas-10.0 \
+    # cuda-cufft-10.0 \
+    # cuda-curand-10.0 \
+    # cuda-cusolver-10.0 \
+    # cuda-cusparse-10.0 \
+    # curl \
+    libfreetype6-dev \
+    libhdf5-serial-dev \
+    libzmq3-dev \
+    pkg-config \
+    software-properties-common \
+    unzip
+
+RUN pip install --upgrade pip && pip install \
+    # pandas==1.1.1 \
+    pydot==1.4.1 \
+    pydotplus==2.0.2 \
+    graphviz==0.13.2 \
+    tensorflow-gpu==2.3.0 \
+    scikit-image==0.16.2 \
+    numpy \
+    scipy \
+    Pillow \
+    cython \
+    matplotlib \
+    opencv-python \
+    h5py \
+    imgaug \
+    h5py==2.10.0 \
+    pyyaml==5.3.1 \
+    requests==2.25.0 \
+    Pillow==8.0.1 \
+    # tensorflow-probability==0.5.0 \
+    # keras==2.0.8 \
+    icecream \
+    --no-cache-dir
+
+# Run code 
+# # #CMD python net_training_suit.py

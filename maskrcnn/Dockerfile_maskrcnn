@@ -1,0 +1,25 @@
+FROM tensorflow
+
+# We are in the working directory /home
+
+RUN export LD_LIBRARY_PATH=/usr/local/cuda/lib64
+
+
+# Install some basic utilities
+# https://github.com/phusion/baseimage-docker/issues/319
+RUN apt-get update -y && apt-get upgrade -y && \
+    apt-get purge nvidia-* && \
+    add-apt-repository ppa:graphics-drivers/ppa && \
+    apt-get update -y && apt-get upgrade
+    
+RUN apt-get install -y --no-install-recommends nvidia-381
+
+# Copy directories
+COPY datasets datasets
+COPY mrcnn mrcnn
+COPY samples samples
+
+WORKDIR samples/balloon/
+# CMD ["python balloon.py train --dataset=../../datasets/balloon --weights=coco"]
+#ENTRYPOINT ["python"]
+

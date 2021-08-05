@@ -1,0 +1,6 @@
+#numpy+=1.20.0 tensorflow needs 1.19.2
+tensorflow-gpu==2.4.0 # replace thios with tensorflow-gpu if yopu want to compute on gpu instead on cpu
+icecream==2.1.0
+scikit-image==0.16.2
+keras
+dataclasses

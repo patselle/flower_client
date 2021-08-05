@@ -1,0 +1,13 @@
+GPU SERVER COMMANDS
+
+### Build
+docker build -t iit-docker01.hsg.privat/autovikki/maskrcnn2 .
+
+### Push
+docker push iit-docker01.hsg.privat/autovikki/maskrcnn2
+
+### Pull
+docker -H ssh://ps101@hsg.privat@10.122.193.58 pull iit-docker01.hsg.privat/autovikki/maskrcnn2
+
+### Run
+docker -H ssh://ps101@hsg.privat@10.122.193.58 run --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility --rm --name autovikki --shm-size=4g iit-docker01.hsg.privat/autovikki/maskrcnn2
